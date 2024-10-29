@@ -97,7 +97,7 @@ class FTPStorage(BaseStorage):
             ftp.encoding = self.encoding
             try:
                 ftp.connect(self._config["host"], self._config["port"])
-                ftp.login(self._config["user"], self._config["passwd"])
+                ftp.login(urllib.parse.unquote(self._config["user"]), urllib.parse.unquote(self._config["passwd"]))
                 if self._config["secure"]:
                     ftp.prot_p()
                 if self._config["active"]:
